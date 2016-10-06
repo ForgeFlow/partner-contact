@@ -50,6 +50,6 @@
     'demo': [
         'demo/better_zip.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }
