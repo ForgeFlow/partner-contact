@@ -13,24 +13,48 @@ class BetterZip(models.Model):
     _order = "name asc"
     _rec_name = "display_name"
 
-    display_name = fields.Char('Name', compute='_get_display_name', store=True)
+    def domain_city_id(self):
+        if self.country_id:
+            return [('country_id', '=', self.country_id.id)]
+        return ""
+
+    def domain_state_id(self):
+        if self.country_id:
+            return [('country_id', '=', self.country_id.id)]
+        return ""
+
+    display_name = fields.Char(
+        'Name',
+        compute='_compute_display_name',
+        store=True
+    )
     name = fields.Char('ZIP')
-    code = fields.Char('City Code', size=64,
-                       help="The official code for the city")
+    code = fields.Char(
+        'City Code',
+        size=64,
+        help="The official code for the city"
+    )
     city = fields.Char('City', required=True)
-    state_id = fields.Many2one('res.country.state', 'State')
+    city_id = fields.Many2one(
+        'res.city',
+        'City',
+        domain=domain_city_id
+    )
+    state_id = fields.Many2one(
+        'res.country.state',
+        'State',
+        domain=domain_state_id
+    )
     country_id = fields.Many2one('res.country', 'Country')
+    enforce_cities = fields.Boolean(
+        related='country_id.enforce_cities',
+        readonly=True
+    )
     latitude = fields.Float()
     longitude = fields.Float()
 
-    @api.one
-    @api.depends(
-        'name',
-        'city',
-        'state_id',
-        'country_id',
-        )
-    def _get_display_name(self):
+    @api.depends('name', 'city', 'state_id', 'country_id')
+    def _compute_display_name(self):
         if self.name:
             name = [self.name, self.city]
         else:
@@ -41,7 +65,26 @@ class BetterZip(models.Model):
             name.append(self.country_id.name)
         self.display_name = ", ".join(name)
 
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        if self.country_id:
+            self.state_id = False
+            self.city_id = False
+            return {
+                'domain':{
+                    'state_id': self.domain_city_id(),
+                    'city_id': self.domain_state_id()
+                }
+            }
+
+    @api.onchange('city_id')
+    def _onchange_city_id(self):
+        if self.city_id:
+            self.city = self.city_id.name
+            self.state_id = self.city_id.state_id
+            self._onchange_state_id()
+
     @api.onchange('state_id')
-    def onchange_state_id(self):
+    def _onchange_state_id(self):
         if self.state_id:
             self.country_id = self.state_id.country_id
