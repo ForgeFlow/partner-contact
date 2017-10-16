@@ -7,7 +7,7 @@ from odoo import models, fields, api
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-    zip_id = fields.Many2one('res.better.zip', 'City/Location')
+    zip_id = fields.Many2one('res.better.zip', 'Location')
 
     @api.onchange('zip_id')
     def onchange_zip_id(self):
@@ -15,5 +15,8 @@ class ResPartner(models.Model):
             self.zip = self.zip_id.name
             self.city_id = self.zip_id.city_id
             self.city = self.zip_id.city
-            self.state_id = self.zip_id.state_id
+            if self.country_id.enforce_cities:
+                self.state_id = self.city_id.state_id
+            else:
+                self.state_id = self.better_zip_id.state_id
             self.country_id = self.zip_id.country_id

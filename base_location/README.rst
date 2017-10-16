@@ -12,8 +12,29 @@ It enables zip, city, state and country auto-completion on partners and companie
 
 Also allows different search filters.
 
+Configuration
+=============
+
+* Users in group 'Contact Creation' can maintain the Locations.
+
 Usage
 =====
+
+#. Activate the developer mode in *Settings*.
+#. Go to *Settings / Technical / Locations Management / Locations*.
+#. Create a new Location.
+
+or, with module 'Contacts Directory' installed:
+#. Go to *Contacts / Configuration / Localization / Countries*.
+#. Locate the desired country.
+#. Press on the button 'Locations'.
+
+or,
+#. Go to *Contacts / Configuration / Localization / Fed. States*
+#. Locate the desired state.
+#. Enter the desired Locations.
+
+
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
