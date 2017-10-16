@@ -20,5 +20,8 @@ class ResCompany(models.Model):
             self.zip = self.better_zip_id.name
             self.city_id = self.better_zip_id.city_id
             self.city = self.better_zip_id.city
-            self.state_id = self.better_zip_id.state_id
+            if self.country_id.enforce_cities:
+                self.state_id = self.city_id.state_id
+            else:
+                self.state_id = self.better_zip_id.state_id
             self.country_id = self.better_zip_id.country_id
