@@ -33,7 +33,7 @@ class TestCompletion(TransactionCase):
         self.assertEqual(self.partner1.country_id, self.better_zip1.country_id)
 
     def test_onchange_company_city_completion(self):
-        self.company.better_zip_id = self.better_zip1
+        self.company.zip_id = self.better_zip1
         self.company.on_change_city()
         self.assertEqual(self.company.zip, self.better_zip1.name)
         self.assertEqual(self.company.city, self.better_zip1.city)
@@ -41,7 +41,7 @@ class TestCompletion(TransactionCase):
         self.assertEqual(self.company.country_id, self.better_zip1.country_id)
 
     def test_onchange_company_city_id_completion(self):
-        self.company.better_zip_id = self.better_zip2
+        self.company.zip_id = self.better_zip2
         self.company.on_change_city()
         self.assertEqual(self.company.zip, self.better_zip2.name)
         self.assertEqual(self.company.city, self.better_zip2.city)

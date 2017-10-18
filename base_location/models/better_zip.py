@@ -11,7 +11,6 @@ class BetterZip(models.Model):
     _name = "res.better.zip"
     _description = __doc__
     _order = "name asc"
-    _rec_name = "display_name"
 
     def domain_city_id(self):
         if self.country_id:
@@ -23,11 +22,6 @@ class BetterZip(models.Model):
             return [('country_id', '=', self.country_id.id)]
         return ""
 
-    display_name = fields.Char(
-        'Name',
-        compute='_compute_display_name',
-        store=True,
-    )
     name = fields.Char('ZIP')
     code = fields.Char(
         'City Code',
@@ -43,7 +37,7 @@ class BetterZip(models.Model):
     state_id = fields.Many2one(
         'res.country.state',
         'State',
-        domain=domain_state_id
+        domain=domain_state_id,
     )
     country_id = fields.Many2one('res.country', 'Country')
     enforce_cities = fields.Boolean(
@@ -53,18 +47,21 @@ class BetterZip(models.Model):
     latitude = fields.Float()
     longitude = fields.Float()
 
+    @api.multi
     @api.depends('name', 'city', 'state_id', 'country_id')
-    def _compute_display_name(self):
+    def name_get(self):
+        result = []
         for rec in self:
+            name = []
             if rec.name:
-                name = [rec.name, rec.city]
-            else:
-                name = [rec.city]
+                name.append(rec.name)
+            name.append(rec.city)
             if rec.state_id:
                 name.append(rec.state_id.name)
             if rec.country_id:
                 name.append(rec.country_id.name)
-            rec.display_name = ", ".join(name)
+            result.append((rec.id, ", ".join(name)))
+        return result
 
     @api.onchange('country_id')
     def _onchange_country_id(self):

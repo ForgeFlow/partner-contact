@@ -34,8 +34,6 @@ or,
 #. Locate the desired state.
 #. Enter the desired Locations.
 
-
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/134/11.0
@@ -43,13 +41,18 @@ or,
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/
-partner_contact/issues>`_. In case of trouble, please
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/partner_contact/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
+
+Images
+------
+
+* Icon park: `Icon http://icon-park.com/icon/location-map-pin-orange3/`
 
 Contributors
 ------------
@@ -62,10 +65,6 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Dave Lasley <dave@laslabs.com>
-
-Icon
-----
-* https://icon-park.com/icon/location-map-pin-orange3/
 
 
 Maintainer
