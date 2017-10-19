@@ -32,12 +32,10 @@ class BetterZip(models.Model):
     city_id = fields.Many2one(
         'res.city',
         'City',
-        domain=domain_city_id,
     )
     state_id = fields.Many2one(
         'res.country.state',
         'State',
-        domain=domain_state_id,
     )
     country_id = fields.Many2one('res.country', 'Country')
     enforce_cities = fields.Boolean(
