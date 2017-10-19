@@ -10,8 +10,7 @@
                     <group>
                         <field name="name"/>
                         <field name="city_id"
-                               attrs="{'invisible': [('enforce_cities', '=', False)],'required': [('enforce_cities', '=', True)]}"
-                               domain="[('country_id', '=', country_id)]"/>
+                               attrs="{'invisible': [('enforce_cities', '=', False)],'required': [('enforce_cities', '=', True)]}"/>
                         <field name="city"
                                attrs="{'invisible': [('enforce_cities', '=', True)]}"/>
                         <field name="country_id"/>
@@ -19,8 +18,7 @@
                     </group>
                     <group>
                         <field name="code"/>
-                        <field name="state_id"
-                               domain="[('country_id', '=', country_id)]"/>
+                        <field name="state_id"/>
                     </group>
                 </group>
             </form>

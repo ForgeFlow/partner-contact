@@ -2,7 +2,8 @@
 # Copyright 2016 Nicolas Bessi, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class BetterZip(models.Model):
@@ -97,3 +98,22 @@ class BetterZip(models.Model):
     def _onchange_state_id(self):
         if self.state_id:
             self.country_id = self.state_id.country_id
+
+    @api.constrains('state_id', 'country_id', 'city_id')
+    def constrains_country(self):
+        for rec in self:
+            if rec.state_id and rec.state_id.country_id != \
+                    rec.country_id:
+                raise ValidationError(_(
+                    "The country of the state differs from the country in "
+                    "location %s") % rec.name)
+            if rec.city_id and rec.city_id.country_id \
+                    != rec.country_id:
+                raise ValidationError(_(
+                    "The country of the city differs from the country in "
+                    "location %s") % rec.name)
+            if rec.city_id and rec.city_id.state_id \
+                    != rec.state_id:
+                raise ValidationError(_(
+                    "The state of the city differs from the state in "
+                    "location %s") % rec.name)
