@@ -5,13 +5,14 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBase(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        Partner = self.env["res.partner"]
-        self.p1 = Partner.browse(Partner.name_create("Parent")[0])
-        self.c1 = Partner.create({"name": "Child 1", "parent_id": self.p1.id})
-        self.c11 = Partner.create({"name": "Grand-Child 1.1", "parent_id": self.c1.id})
-        self.c2 = Partner.create({"name": "Child 2", "parent_id": self.p1.id})
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        Partner = cls.env["res.partner"]
+        cls.p1 = Partner.browse(Partner.name_create("Parent")[0])
+        cls.c1 = Partner.create({"name": "Child 1", "parent_id": cls.p1.id})
+        cls.c11 = Partner.create({"name": "Grand-Child 1.1", "parent_id": cls.c1.id})
+        cls.c2 = Partner.create({"name": "Child 2", "parent_id": cls.p1.id})
 
     def test_01_archive_partners(self):
         self.assertTrue(self.p1.active)
