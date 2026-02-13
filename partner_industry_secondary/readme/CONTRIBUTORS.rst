@@ -7,4 +7,3 @@
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Miquel Raïch <miquel.raich@eficent.com>
 * Cristina Martin R.
-* Eduardo de Miguel <hola@moduon.team> (`Moduon <https://www.moduon.team/>`__)

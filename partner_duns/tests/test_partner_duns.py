@@ -2,10 +2,10 @@
 # @author Iván Todorovich <ivan.todorovich@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form, SavepointCase
 
 
-class TestPartnerDuns(TransactionCase):
+class TestPartnerDuns(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

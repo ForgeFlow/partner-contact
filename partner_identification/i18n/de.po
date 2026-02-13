@@ -9,15 +9,14 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 03:41+0000\n"
-"PO-Revision-Date: 2025-09-26 09:42+0000\n"
-"Last-Translator: Bastian Günther <mail@bastian-guenther.de>\n"
+"PO-Revision-Date: 2017-05-31 03:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: partner_identification
 #: model_terms:ir.ui.view,arch_db:partner_identification.view_partner_id_category_form
@@ -39,25 +38,6 @@ msgid ""
 "<b><i># Sample 3: ID number must start with the category code</i></b>\n"
 "failed = not id_number.name.startswith(self.code) and True or False"
 msgstr ""
-"# Verwenden Sie failed = True, um anzugeben, dass die ID-Nummer ungültig ist."
-"\n"
-"# Sie können die folgenden Variablen verwenden:\n"
-"#  - self: browse_record der aktuellen ID-Kategorie (browse_record)\n"
-"#  - id_number: browse_record der zu validierenden ID-Nummer\n"
-"\n"
-"<b><i># Beispiel 1: Die ID-Nummer darf nur Ziffern enthalten</i></b>\n"
-"if not id_number.name.isdigit():\n"
-"    failed = True\n"
-"else:\n"
-"    failed = False\n"
-"\n"
-"<b><i># Beispiel 2: Die Länge der ID-Nummer darf 10 Zeichen nicht "
-"überschreiten</i></b>\n"
-"failed = len(id_number.name) > 10 and True or False\n"
-"\n"
-"<b><i># Beispiel 3: Die ID-Nummer muss mit dem Kategoriecode beginnen</i></b>"
-"\n"
-"failed = not id_number.name.startswith(self.code) and True or False"
 
 #. module: partner_identification
 #: model:ir.model.fields,help:partner_identification.field_res_partner_id_category__code
@@ -92,12 +72,12 @@ msgstr "Schlüssel"
 #. module: partner_identification
 #: model:ir.model.fields,field_description:partner_identification.field_res_partner_id_category__color
 msgid "Color Index"
-msgstr "Farbindex"
+msgstr ""
 
 #. module: partner_identification
 #: model:ir.model,name:partner_identification.model_res_partner
 msgid "Contact"
-msgstr "Kontakt"
+msgstr ""
 
 #. module: partner_identification
 #: model:ir.model.fields,field_description:partner_identification.field_res_partner_id_category__create_uid
@@ -126,9 +106,6 @@ msgid ""
 " {name} \n"
 "({error})"
 msgstr ""
-"Fehler bei der Prüfung des Validierungsprogramms für die Ausweiskategorie: \n"
-" {name} \n"
-"({error})"
 
 #. module: partner_identification
 #: model:ir.model.fields,help:partner_identification.field_res_partner_id_number__valid_until
@@ -137,7 +114,8 @@ msgid ""
 "license, 21/10/2019"
 msgstr ""
 "Ablaufdatum. Zum Beispiel das Datum, an dem jemand seinen Führerschein "
-"erneuern muss, 21. 10. 2019"
+"erneuern muss,\n"
+"21. 10. 2019"
 
 #. module: partner_identification
 #: model:ir.model.fields.selection,name:partner_identification.selection__res_partner_id_number__status__close
@@ -242,13 +220,15 @@ msgstr "Ausweiskategorien von Partnern"
 
 #. module: partner_identification
 #: model:ir.model,name:partner_identification.model_res_partner_id_category
+#, fuzzy
 msgid "Partner ID Category"
-msgstr "Partner Ausweiskategorie"
+msgstr "Ausweiskategorien von Partnern"
 
 #. module: partner_identification
 #: model:ir.model,name:partner_identification.model_res_partner_id_number
+#, fuzzy
 msgid "Partner ID Number"
-msgstr "Partner Ausweisnummer"
+msgstr "Ausweisnummern von Partnern"
 
 #. module: partner_identification
 #: model:ir.actions.act_window,name:partner_identification.action_partner_id_numbers_form
@@ -270,7 +250,7 @@ msgstr "Ort der Ausstellung"
 #. module: partner_identification
 #: model_terms:ir.ui.view,arch_db:partner_identification.view_partner_id_category_form
 msgid "Python Validation Code:"
-msgstr "Python Prüfprogrammcode:"
+msgstr ""
 
 #. module: partner_identification
 #: model:ir.model.fields,help:partner_identification.field_res_partner_id_category__validation_code
@@ -315,9 +295,6 @@ msgid ""
 "write via the {field_name} field is not possible. In order to fix this, "
 "please use the IDs tab."
 msgstr ""
-"{record_name} hat mehrere IDs für diesen Typ ({category_code}), daher ist "
-"ein Schreiben in das Feld {field_name} nicht möglich. Bitte benutzen Sie "
-"stattdessen den Ausweisnummern-Reiter."
 
 #. module: partner_identification
 #: model:ir.model.fields.selection,name:partner_identification.selection__res_partner_id_number__status__pending
@@ -344,7 +321,7 @@ msgstr "Anfangsdatum der Prüfperiode."
 #: code:addons/partner_identification/models/res_partner_id_category.py:0
 #, python-format
 msgid "{id_name} is not a valid {cat_name} identifier"
-msgstr "{id_name} ist keine gültige {cat_name} Identifikation"
+msgstr ""
 
 #, python-format
 #~ msgid "%s is not a valid %s identifier"

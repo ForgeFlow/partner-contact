@@ -1,1 +1,0 @@
-from . import test_company_default_partner_pricelist

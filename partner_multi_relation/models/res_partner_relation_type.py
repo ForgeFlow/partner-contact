@@ -22,7 +22,6 @@ class ResPartnerRelationType(models.Model):
 
     name = fields.Char(required=True, translate=True)
     name_inverse = fields.Char(string="Inverse name", required=True, translate=True)
-    active = fields.Boolean(default=True)
     contact_type_left = fields.Selection(
         selection="get_partner_types", string="Left partner type"
     )
@@ -85,7 +84,7 @@ class ResPartnerRelationType(models.Model):
                 relation.write({"date_end": today})
 
     def check_existing(self, vals):
-        """Check whether records exist that do not fit new criteria."""
+        """Check wether records exist that do not fit new criteria."""
         relation_model = self.env["res.partner.relation"]
 
         def get_type_condition(vals, side):

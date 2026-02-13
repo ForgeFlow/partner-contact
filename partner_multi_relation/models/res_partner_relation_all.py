@@ -54,7 +54,7 @@ class ResPartnerRelationAll(models.Model):
     _order = "this_partner_id, type_selection_id, date_end desc, date_start desc"
     _rec_names_search = [
         "this_partner_id.name",
-        "type_selection_id.name",
+        "type_selection_id.display_name",
         "other_partner_id.name",
     ]
 
@@ -94,8 +94,7 @@ class ResPartnerRelationAll(models.Model):
     )
     active = fields.Boolean(
         readonly=True,
-        help="Records with date_end in the past are inactive, "
-        " as well as records for inactive partners.",
+        help="Records with date_end in the past are inactive",
     )
     any_partner_id = fields.Many2many(
         comodel_name="res.partner",
@@ -153,16 +152,10 @@ CREATE OR REPLACE VIEW %%(table)s AS
          THEN bas.type_id * 2
          ELSE (bas.type_id * 2) + 1
      END as type_selection_id,
-     (
-        (bas.date_end IS NULL OR bas.date_end >= current_date)
-        AND this_partner.active
-        AND other_partner.active
-     ) AS active
+     (bas.date_end IS NULL OR bas.date_end >= current_date) AS active
      %%(additional_view_fields)s
  FROM base_selection bas
  JOIN res_partner_relation_type typ ON (bas.type_id = typ.id)
- JOIN res_partner this_partner ON (bas.this_partner_id = this_partner.id)
- JOIN res_partner other_partner ON (bas.other_partner_id = other_partner.id)
  %%(additional_tables)s
         """ % {
             "union_select": union_select
@@ -234,7 +227,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
                     this.other_partner_id.name,
                 ),
             )
-            for this in self.with_context(test_active=False)
+            for this in self
         ]
 
     @api.onchange("type_selection_id")
@@ -242,7 +235,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
         """Add domain on partners according to category and contact_type."""
 
         def check_partner_domain(partner, partner_domain, side):
-            """Check whether partner_domain results in empty selection
+            """Check wether partner_domain results in empty selection
             for partner, or wrong selection of partner already selected.
             """
             warning = {}
@@ -288,7 +281,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
                 "other_partner_id": other_partner_domain,
             }
         }
-        # Check whether domain results in no choice or wrong choice of partners:
+        # Check wether domain results in no choice or wrong choice of partners:
         warning = {}
         partner_model = self.env["res.partner"]
         if this_partner_domain:
@@ -319,7 +312,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
         """Set domain on type_selection_id based on partner(s) selected."""
 
         def check_type_selection_domain(type_selection_domain):
-            """If type_selection_id already selected, check whether it
+            """If type_selection_id already selected, check wether it
             is compatible with the computed type_selection_domain. An empty
             selection can practically only occur in a practically empty
             database, and will not lead to problems. Therefore not tested.
@@ -359,7 +352,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
                 ("partner_category_other", "in", self.other_partner_id.category_id.ids),
             ]
         result = {"domain": {"type_selection_id": type_selection_domain}}
-        # Check whether domain results in no choice or wrong choice for
+        # Check wether domain results in no choice or wrong choice for
         # type_selection_id:
         warning = check_type_selection_domain(type_selection_domain)
         if warning:

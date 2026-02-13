@@ -17,7 +17,6 @@
                     type="object"
                     name="open_child_form"
                     title="Open full form"
-                    attrs="{'invisible': [('id', '=', False)]}"
                 >
                     <i
                         class="fa fa-caret-right fa-2x"

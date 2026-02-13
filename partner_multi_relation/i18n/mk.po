@@ -20,28 +20,13 @@ msgstr ""
 
 #. module: partner_multi_relation
 #. odoo-python
-#: code:addons/partner_multi_relation/models/res_partner_relation.py:0
-#, python-format
-msgid ""
-"%(left_partner)s already has a %(connection_type)s relation with "
-"%(right_partner)s with overlapping dates"
-msgstr ""
-
-#. module: partner_multi_relation
-#. odoo-python
 #: code:addons/partner_multi_relation/models/res_partner_relation_all.py:0
 #, python-format
 msgid "%s partner incompatible with relation type."
 msgstr ""
 
 #. module: partner_multi_relation
-#: model_terms:ir.ui.view,arch_db:partner_multi_relation.search_res_partner_relation_all
-msgid "+Inactive"
-msgstr ""
-
-#. module: partner_multi_relation
 #: model:ir.model.fields,field_description:partner_multi_relation.field_res_partner_relation_all__active
-#: model:ir.model.fields,field_description:partner_multi_relation.field_res_partner_relation_type__active
 msgid "Active"
 msgstr "Активно"
 
@@ -67,13 +52,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:partner_multi_relation.selection__res_partner_relation_type__handle_invalid_onchange__ignore
 #, python-format
 msgid "Allow existing relations that do not fit changed conditions"
-msgstr ""
-
-#. module: partner_multi_relation
-#. odoo-python
-#: code:addons/partner_multi_relation/models/res_partner.py:0
-#, python-format
-msgid "Cannot change type of partner due to incompatible connections."
 msgstr ""
 
 #. module: partner_multi_relation
@@ -198,6 +176,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:partner_multi_relation.field_res_partner_relation_type_selection__id
 msgid "ID"
 msgstr "ID"
+
+#. module: partner_multi_relation
+#: model_terms:ir.ui.view,arch_db:partner_multi_relation.search_res_partner_relation_all
+msgid "Include past records"
+msgstr ""
 
 #. module: partner_multi_relation
 #: model:ir.model.fields,field_description:partner_multi_relation.field_res_partner_relation_type__handle_invalid_onchange
@@ -370,9 +353,7 @@ msgstr ""
 
 #. module: partner_multi_relation
 #: model:ir.model.fields,help:partner_multi_relation.field_res_partner_relation_all__active
-msgid ""
-"Records with date_end in the past are inactive,  as well as records for "
-"inactive partners."
+msgid "Records with date_end in the past are inactive"
 msgstr ""
 
 #. module: partner_multi_relation
@@ -528,6 +509,13 @@ msgstr ""
 msgid ""
 "There are already relations not satisfying the conditions for partner type "
 "or category."
+msgstr ""
+
+#. module: partner_multi_relation
+#. odoo-python
+#: code:addons/partner_multi_relation/models/res_partner_relation.py:0
+#, python-format
+msgid "There is already a similar relation with overlapping dates"
 msgstr ""
 
 #. module: partner_multi_relation
